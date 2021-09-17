@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  MarketingCopy,
-  OffsetHero,
-  SelectionSlice,
-  Title,
-  About,
-} from '../slices';
+import { MarketingCopy, OffsetHero, SelectionSlice, Title, About } from '../slices';
 
 /**
  * SliceZone is a component we use to render content on the page the way it is intended to be
@@ -22,15 +16,15 @@ export const SliceZone = ({ slices }) => {
    *
    * You should see the component names getting rendered in the landing page now. We'll uncomment a few of those to see what they add to the page
    */
-  const sliceComponents = {};
+  // const sliceComponents = {};
 
-  // const sliceComponents = {
-  //   title: Title,
-  //   offset_hero: OffsetHero,
-  //   marketing_copy: MarketingCopy,
-  //   selection_products: SelectionSlice,
-  //   about: About,
-  // };
+  const sliceComponents = {
+    title: Title,
+    offset_hero: OffsetHero,
+    marketing_copy: MarketingCopy,
+    selection_products: SelectionSlice,
+    about: About,
+  };
 
   return slices.map((slice, index) => {
     const SliceComponent = sliceComponents[slice.slice_type];

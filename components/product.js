@@ -7,15 +7,7 @@ import Container from './container';
 import RelatedProducts from './related-product';
 
 function Product({ product }) {
-  const {
-    description,
-    title,
-    features,
-    callout,
-    brand,
-    linked_product,
-    related_products,
-  } = product.data;
+  const { description, title, features, callout, brand, linked_product, related_products } = product.data;
 
   const { image_url, currency, price } = linked_product;
 
@@ -28,34 +20,33 @@ function Product({ product }) {
           justifyContent: 'space-between',
           flexDirection: ['column', 'column', 'row'],
           marginBottom: '10%',
-        }}>
+        }}
+      >
         <Flex
           sx={{
             flexDirection: 'column',
             alignItems: 'flex-start',
             flex: 2,
-          }}>
+          }}
+        >
           {/**
            * Step 13
            * Uncomment the <Image /> component below
            */}
           <Image alt={title} src={image_url} />
         </Flex>
-        <Flex
-          sx={{ flexDirection: 'column', justifyContent: 'center', flex: 2 }}>
+        <Flex sx={{ flexDirection: 'column', justifyContent: 'center', flex: 2 }}>
           {/**
            * Step 14
            * Uncomment both <RichText /> components below
            */}
-          {/* <RichText render={brand} />
-          <RichText render={title} /> */}
-          <Box as='p' sx={{ fontSize: '24px', marginBottom: '24px' }}>
+          <RichText render={brand} />
+          <RichText render={title} />
+          <Box as="p" sx={{ fontSize: '24px', marginBottom: '24px' }}>
             {formatCurrencyString({ value: price, currency })}
           </Box>
 
-          <Button
-            sx={{ height: '56px', marginBottom: '32px' }}
-            onClick={() => addItem(linked_product)}>
+          <Button sx={{ height: '56px', marginBottom: '32px' }} onClick={() => addItem(linked_product)}>
             Add to Cart
           </Button>
           <Box>
@@ -63,7 +54,7 @@ function Product({ product }) {
              * Step 15
              * Uncomment the RichText component below
              */}
-            {/* <RichText render={callout} htmlSerializer={htmlSerializer} /> */}
+            <RichText render={callout} htmlSerializer={htmlSerializer} />
           </Box>
         </Flex>
       </Flex>
@@ -76,28 +67,29 @@ function Product({ product }) {
           borderBottom: '5px solid black',
           paddingTop: '40px',
           paddingBottom: '40px',
-        }}>
+        }}
+      >
         <Box sx={{ width: '40%' }}>
-          <Heading as='h2'>Description</Heading>
+          <Heading as="h2">Description</Heading>
           {/**
            * Step 16
            * Uncomment the <RichText /> component below
            */}
-          {/* <RichText render={description} /> */}
+          <RichText render={description} />
         </Box>
         <Box sx={{ width: '50%' }}>
           {/**
            * Step 17
            * Uncomment the <RichText /> component below
            */}
-          {/* <RichText render={features} htmlSerializer={htmlSerializer} /> */}
+          <RichText render={features} htmlSerializer={htmlSerializer} />
         </Box>
       </Flex>
       {/**
        * Step 18
        * Uncomment the <RelatedProducts /> component below
        */}
-      {/* <RelatedProducts products={related_products} /> */}
+      <RelatedProducts products={related_products} />
     </Container>
   );
 }
