@@ -1,6 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_API_SECRET);
-const validateCartItems =
-  require('use-shopping-cart/utilities').validateCartItems;
+const { validateCartItems } = require('use-shopping-cart/utilities');
 
 const fetch = require('node-fetch');
 
@@ -22,7 +21,7 @@ export default async (req, res) => {
 
     inventory = await result.json();
 
-    inventory = inventory.results.map((item) => item.blob);
+    inventory = inventory.results.map(item => item.blob);
   } catch (error) {
     console.log('Error: ', error);
   }
@@ -33,9 +32,9 @@ export default async (req, res) => {
     res.status(400);
   }
 
-  let line_items;
+  let lineItems;
   try {
-    line_items = product;
+    lineItems = product;
   } catch (error) {
     res.status(422).json({
       message: 'Some of the items in  your cart are invalid',
@@ -52,9 +51,9 @@ export default async (req, res) => {
         allowed_countries: ['US', 'CA'],
       },
       mode: 'payment',
-      success_url: `${process.env.SITE_URL}/success`,
-      cancel_url: process.env.SITE_URL,
-      line_items,
+      success_url: `${process.env.DEPLOY_URL}/success`,
+      cancel_url: process.env.DEPLOY_URL,
+      lineItems,
     });
   } catch (error) {
     res.status(500).json({
