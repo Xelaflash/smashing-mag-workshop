@@ -13,6 +13,7 @@
     "@prismicio/client": "^5",
     "@reach/dialog": "^0.15.3",
     "fetch": "^1.1.0",
+    "netlify-cli": "^6.9.6",
     "netlify-identity-widget": "^1.9.2",
     "next": "^11.1.0",
     "next-slicezone": "^0.1.0",
