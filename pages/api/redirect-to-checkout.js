@@ -9,6 +9,7 @@ const fetch = require('node-fetch');
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default async (req, res) => {
+  console.log(process.env.SITE_URL);
   const cartDetails = JSON.parse(req.body.cartDetails);
   let product;
 
@@ -32,9 +33,9 @@ export default async (req, res) => {
     res.status(400);
   }
 
-  let lineItems;
+  let line_items;
   try {
-    lineItems = product;
+    line_items = product;
   } catch (error) {
     res.status(422).json({
       message: 'Some of the items in  your cart are invalid',
@@ -51,9 +52,11 @@ export default async (req, res) => {
         allowed_countries: ['US', 'CA'],
       },
       mode: 'payment',
-      success_url: `${process.env.DEPLOY_URL}/success`,
-      cancel_url: process.env.DEPLOY_URL,
-      lineItems,
+      // success_url: `${process.env.SITE_URL}/success`,
+      // cancel_url: process.env.SITE_URL,
+      success_url: `http://localhost:3000/success`,
+      cancel_url: 'http://localhost:3000/',
+      line_items,
     });
   } catch (error) {
     res.status(500).json({
